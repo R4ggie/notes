@@ -211,3 +211,4 @@ export default {
 <!--  the funcion we made will sends a GET request using axios path, gets a response then stores it in notes list-->
 <!-- then in our template we used for loop to add colooms as much as the notes in the list -->
 <!-- then usiing the {{ var }}  we set inside it which data either the note or the label-->
+<!-- ! -->
