@@ -60,13 +60,20 @@ def all_notes():
     return jsonify(response_object)
 
 
-@app.route('/notepage/<note_id>' , methods =['DELETE']) 
-def delete_note(note_id): #passes the notte id
+@app.route('/notepage/<note_id>' , methods =['DELETE', 'PUT']) 
+def modify_note(note_id): #passes the notte id
     if request.method == "DELETE":
         remove_note(note_id)  #runs the below func for removing
         response_object = {
             'message': 'Note Deleted!',
             'notes': NOTES #resendds the note as json file
+        }
+    elif request.method == "PUT":
+        post_data = request.get_json()
+        update_note(note_id, post_data)
+        response_object = {
+            'message': 'Note Updated!',
+            'notes': NOTES
         }
     return jsonify(response_object)
 
@@ -75,7 +82,15 @@ def remove_note(note_id):
         if note['id'] == note_id:
             NOTES.remove(note)
             return True
-        return False
+    return False
+
+def update_note(note_id, data):
+    for note in NOTES:
+        if note['id'] == note_id:
+            note['note'] = data.get('note')
+            note['label'] = data.get('label')
+            return True
+    return False
 
 
 # a funcion that returns my LIST aas a json file and call it "notes"
@@ -83,4 +98,4 @@ def remove_note(note_id):
 
 
 if __name__ == '__main__':
-    app.run(debug=True) 
+    app.run(debug=True)

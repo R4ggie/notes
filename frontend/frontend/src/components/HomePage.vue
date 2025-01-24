@@ -26,32 +26,32 @@
 </template>
 
 <script>
-import axios from "axios";
+import axios from 'axios'
 
 export default {
   //this renders the mssg to the template
-  name: "HomePage",
+  name: 'HomePage',
   data() {
     return {
-      msg: "", //get msg from flask api
-    };
+      msg: '' //get msg from flask api
+    }
   },
 
   methods: {
     getResponse() {
       //a func we made that gets the mssg from the backend flask app.py page()
-      const path = "http://localhost:5000/homepage";
+      const path = 'http://localhost:5000/homepage'
       axios
         .get(path) //sends a request to this path
         .then((res) => {
           //res is short for response//then means do this with the response
-          console.log(res.data); //res = return from app.py // shhows us in logs
-          this.msg = res.data; //res.data contains the respnse from backend and stores it in msg
-        });
-    },
+          console.log(res.data) //res = return from app.py // shhows us in logs
+          this.msg = res.data //res.data contains the respnse from backend and stores it in msg
+        })
+    }
   },
   created() {
-    this.getResponse(); //runs the getresponse func before the page loads cz it wont run unless with this or a button
-  },
-};
+    this.getResponse() //runs the getresponse func before the page loads cz it wont run unless with this or a button
+  }
+}
 </script>

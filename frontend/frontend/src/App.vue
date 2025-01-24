@@ -6,7 +6,7 @@
 
 <style>
 #app {
-  font-family: "Jersey 15", sans-serif;
+  font-family: 'Jersey 15', sans-serif;
 }
 
 * {
@@ -24,7 +24,7 @@
 }
 
 body {
-  font-family: "Jersey 15", sans-serif;
+  font-family: 'Jersey 15', sans-serif;
   font-size: 20px;
   color: #191918;
   line-height: 1.5;
@@ -71,7 +71,7 @@ tr {
 
 button {
   font-size: 1.2rem;
-  font-family: "Jersey 15", sans-serif;
+  font-family: 'Jersey 15', sans-serif;
   border-radius: 4px;
   border: none;
   background-color: var(--light-color);
