@@ -1,8 +1,8 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
-import HomePage from "@/components/HomePage.vue";
-import NotePage from "@/components/NotePage.vue";
-import PagePage from "@/components/PagePage.vue";
+import HomePage from "../components/HomePage.vue";
+import NotePage from "../components/NotePage.vue";
+import PagePage from "../components/PagePage.vue";
 
 Vue.use(VueRouter);
 
@@ -22,6 +22,10 @@ const routes = [
     name: "PagePage",
     component: PagePage,
   },
+  {
+    path: "*",
+    redirect: "/notepage",
+  },  
 ]
 
 const router = new VueRouter({

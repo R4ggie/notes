@@ -1,9 +1,13 @@
 <template>
-  <content class="notes">
-    <div class="container font-light" style="background: #2b2b28;">
-      <h1>Notes Library</h1>
+  <content class="data">
+    <div class="font-light" style="background: #2b2b28">
+      <div class="container">
+        <h1>Notes Library</h1>
+      </div>
       <b-alert v-if="showMsg" show> {{ msg }} </b-alert>
-      <button class="btn-cls" @click="showModal">Add Note</button>
+      <div class="container">
+        <button class="btn-cls" @click="showModal">Add Note</button>
+      </div>
       <div class="center">
         <table>
           <thead>
@@ -27,31 +31,37 @@
         </table>
       </div>
       <footer>
+        <div class="container">
           <p>For more projects</p>
           <a href="https://github.com/R4ggie">R@ggie</a>
-        </footer>
+        </div>
+      </footer>
     </div>
 
-
     <!--  -->
-    <b-modal ref="addNoteModal" id="note-modal" title="Add a new Note" hide-backdrop hide-footer>
+    <b-modal ref="addNoteModal" 
+    id="note-modal" 
+    title="Add a new Note" hide-backdrop hide-footer>
       <b-form @submit="onSubmit" class="w-100">
-        <b-form-group id="form-note-group" label="Note:" label-for="form-note-input">
-          <b-form-input 
-            id="form-note-input" 
-            type="text" 
-            v-model="addNoteForm.note" 
-            required 
+        <b-form-group
+        id="form-note-group" label="Note:" label-for="form-note-input">
+          <b-form-input
+            id="form-note-input"
+            type="text"
+            v-model="addNoteForm.note"
+            required
             placeholder="Enter Note">
           </b-form-input>
         </b-form-group>
 
-        <b-form-group id="form-label-group" label="Label:" label-for="form-label-input">
-          <b-form-input 
-            id="form-label-input" 
-            type="text" 
-            v-model="addNoteForm.label" 
-            required 
+        <b-form-group id="form-label-group" 
+        label="Label:" 
+        label-for="form-label-input">
+          <b-form-input
+            id="form-label-input"
+            type="text"
+            v-model="addNoteForm.label"
+            required
             placeholder="Enter Label">
           </b-form-input>
         </b-form-group>
@@ -59,13 +69,11 @@
         <b-button type="submit">Submit</b-button>
       </b-form>
     </b-modal>
-
-
   </content>
 </template>
 
 <script>
-import axios from 'axios';
+import axios from "axios";
 
 export default {
   data() {
@@ -76,17 +84,17 @@ export default {
         note: "",
         label: "",
       },
-      showMsg: false,  // Make sure this is initialized
-      msg: "",   
+      showMsg: false,// Make sure this is initialized
+      msg: "",
     };
   },
 
   methods: {
     showModal() {
-    this.$refs.addNoteModal.show();
+      this.$refs.addNoteModal.show();
     },
     getNotes() {
-      const path = 'http://localhost:5000/notepage'
+      const path = "http://localhost:5000/notepage";
       axios
         .get(path)
         .then((res) => {
@@ -96,16 +104,16 @@ export default {
       });
     },
     addNote(payLoad) {
-      const path = 'http://localhost:5000/notepage';
+      const path = "http://localhost:5000/notepage";
       axios
         .post(path, payLoad)
         .then(() => {
-          this.getNotes(); //places the new text in getnote func
-          this.msg = "Note Added";
-          this.showMsg = true;
-          setTimeout(() => {
-          this.showMsg = false;  // Hide the message after 3 seconds
-          }, 3000);
+        this.getNotes(); //places the new text in getnote func
+        this.msg = "Note Added";
+        this.showMsg = true;
+        setTimeout(() => {
+          this.showMsg = false; // Hide the message after 3 seconds
+        }, 3000);
         });
     },
 
@@ -130,19 +138,18 @@ export default {
       axios
         .delete(path)
         .then(() => {
-          this.getNotes(); //places the new text in getnote func
-          this.msg = "Note Deleted!";
-          this.showMsg = true;
-          setTimeout(() => {
+        this.getNotes(); //places the new text in getnote func
+        this.msg = "Note Deleted!";
+        this.showMsg = true;
+        setTimeout(() => {
           this.showMsg = false;
-          }, 3000);
-        });
+        }, 3000);
+      });
     },
 
     deleteNote(note) {
       this.removeNote(note.id); //when we click run this
     },
-
   },
 
   created() {

@@ -1,5 +1,5 @@
 <template>
-  <content class="home">
+  <content class="home dark-bg">
     <div class="txt font-light font-lg dark-bg">
       <div class="middle">
         <h1>Welcome to the main page</h1>
@@ -26,7 +26,7 @@
 </template>
 
 <script>
-import axios from "axios"; 
+import axios from "axios";
 
 export default {
   //this renders the mssg to the template

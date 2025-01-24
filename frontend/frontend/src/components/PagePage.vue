@@ -1,5 +1,5 @@
 <template>
-  <div class="dark-bg font-light">
+  <div class="dark-bg font-light middle">
     <p>{{ msg }}</p>
   </div>
 </template>
